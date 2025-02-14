@@ -1,10 +1,17 @@
-const express = require("express");
+// server.js
+const express = require('express');
 const app = express();
+const port = 3000;
 
-app.get("/", function(req, res) {
-    return res.send("Hello World From Komodo Environment");
+// Middleware untuk menyajikan file statis dari folder 'public'
+app.use(express.static('public'));
+
+// Routing untuk halaman home
+app.get('/', (req, res) => {
+    res.sendFile(__dirname + '/public/index.html');
 });
 
-app.listen(3000, function(){
-    console.log('Listening on port 3000');
+// Menjalankan server
+app.listen(port, () => {
+    console.log(`Server berjalan di http://localhost:${port}`);
 });
